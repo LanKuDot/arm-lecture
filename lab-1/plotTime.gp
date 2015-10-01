@@ -1,4 +1,4 @@
-set style data lines
+set style data linespoints
 set grid
 set title "fibonacci"
 set xlabel "input number"
