@@ -10,8 +10,10 @@ default: fibseq
 
 fibseq_timePlot: CFLAGS += -DTIME_PLOT
 fibseq_timePlot: fibseq
-	qemu-arm -L /usr/arm-linux-gnueabihf ./fibseq && \
-		gnuplot -persist plotTime.gp
+	qemu-arm -L /usr/arm-linux-gnueabihf ./fibseq
+
+plot: fibseq_timePlot
+	gnuplot -persist plotTime.gp
 
 fibseq: $(objects)
 	$(CC) $(LDFLAGS) -o $@ $^
