@@ -12,7 +12,7 @@ int main(int argc, char **argv)
   for ( number = 1; number < 31; ++number )
   {
 	clockTick = clock();
-	result = fibonacci( number );
+	fibonacci( number );
 	clockTick = clock() - clockTick;
 	fprintf( fp, "%d\t%ld\n", number, clockTick );
   }
