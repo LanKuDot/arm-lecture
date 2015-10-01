@@ -8,6 +8,10 @@ default: fibseq
 
 .PHONY: default clean qemu
 
+fibseq_timePlot: CFLAGS += -DTIME_PLOT
+fibseq_timePlot: fibseq
+	qemu-arm -L /usr/arm-linux-gnueabihf ./fibseq
+
 fibseq: $(objects)
 	$(CC) $(LDFLAGS) -o $@ $^
 
