@@ -1,14 +1,24 @@
 #include <stdio.h>
+#include <time.h>
 
 extern int fibonacci(int x);
 
 int main(int argc, char **argv)
 {
   int number=0;
-  int result=0;
+  clock_t clockTick;
+  FILE *fp = fopen( "non-recursive.txt", "w" );
 
-  scanf("%d",&number);
-  result = fibonacci(number);   
-  printf("The fibonacci sequence at %d is: %d\n", number, result);
+  for ( number = 1; number < 31; ++number )
+  {
+	clockTick = clock();
+	result = fibonacci( number );
+	clockTick = clock() - clockTick;
+	fprintf( fp, "%d\t%ld\n", number, clockTick );
+  }
+
+  fclose( fp );
+  return 0;
+
 }
 
