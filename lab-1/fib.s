@@ -50,4 +50,36 @@ recursive:
 	pop {r3, r4, r5, pc}		@ EPILOG
 
 	.size recursive, .-recursive
+
+	.global tail_recursive
+	.type tail_recursive, function
+
+tail_recursive:
+	push {r3, r4, r5, lr}
+
+	cmp r0, #0		@ level(r0) = 0, return prev
+	beq .R_PREV 
+
+	cmp r0, #1		@ level(r0) = 1, return cur
+	beq .R_CUR
+
+	sub r0, r0, #1	@ level(r0) - 1
+	add r3, r1, r2	@ cur + prev
+	mov r2, r1		@ prev(r2) = cur(r1)
+	mov r1, r3	 	@ cur(r1) = prev(r2)+cur(r1)
+
+	bl  tail_recursive
+
+	pop {r3, r4, r5, pc}
+
+.R_PREV:
+	mov r0, r2
+	pop {r3, r4, r5, pc}
+
+.R_CUR:
+	mov r0, r1
+	pop {r3, r4, r5, pc}
+
+	.size tail_recursive, .-tail_recursive
+
 	.end

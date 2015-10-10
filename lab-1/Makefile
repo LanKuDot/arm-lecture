@@ -3,7 +3,7 @@ CFLAGS	= -O1 -Wall
 LDFLAGS = -fno-stack-protector
 
 objects	= fibseq.o fib.o
-timeOutput = recursive.txt
+timeOutput = recursive.txt tail_recursive.txt
 
 default: fibseq
 
