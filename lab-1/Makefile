@@ -7,7 +7,7 @@ timeOutput = recursive.txt
 
 default: fibseq
 
-.PHONY: default clean qemu
+.PHONY: default clean qemu check
 
 fibseq_timePlot: CFLAGS += -DTIME_PLOT
 fibseq_timePlot: fibseq

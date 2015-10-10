@@ -5,10 +5,10 @@
 	.thumb
 	.thumb_func
 
-	.global fibonacci
-	.type fibonacci, function
+	.global recursive
+	.type recursive, function
 
-fibonacci:
+recursive:
 	@ ADD/MODIFY CODE BELOW
 	@ PROLOG
 	push {r3, r4, r5, lr}
@@ -26,14 +26,14 @@ fibonacci:
 	@ R0 = R4 - 1
 	sub r0, r4, #1
 	@ Recursive call to fibonacci with R4 - 1 as parameter
-	bl fibonacci
+	bl recursive
 
 	@ R5 = R0
 	add r5, r0, #0
 	@ R0 = R4 - 2
 	sub r0, r4, #2
 	@ Recursive call to fibonacci with R4 - 2 as parameter
-	bl fibonacci
+	bl recursive
 
 	@ R0 = R5 + R0 (update flags)
 	add r0, r5
@@ -49,5 +49,5 @@ fibonacci:
 	mov r0, #1			@ R0 = 1
 	pop {r3, r4, r5, pc}		@ EPILOG
 
-	.size fibonacci, .-fibonacci
+	.size recursive, .-recursive
 	.end

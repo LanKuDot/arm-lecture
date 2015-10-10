@@ -3,7 +3,7 @@
   #include <time.h>
 #endif
 
-extern int fibonacci(int x);
+extern int recursive(int x);
 
 int main(int argc, char **argv)
 {
@@ -16,14 +16,14 @@ int main(int argc, char **argv)
   for ( number = 1; number < 31; ++number )
   {
 	cpuTick = clock();
-	fibonacci(number);
+	recursive( number );
 	cpuTick = clock() - cpuTick;
 	fprintf( fp, "%d\t%ld\n", number, (long)cpuTick );
   }
   fclose( fp );
 #else
   scanf("%d",&number);
-  result = fibonacci(number);   
+  result = recursive(number);   
   printf("The fibonacci sequence at %d is: %d\n", number, result);
 #endif
 
